@@ -12,8 +12,8 @@ import { loggerAdapter } from '../../output/logging/loggerAdapter';
 const customerRepositoryPort: CustomerRepositoryPort = {
     save: async (customer: Customer) => {
         // Simulación de guardar en la base de datos
-        console.log("Guardando cliente en la base de datos:", customer);
-        loggerAdapter.info(`Creando un usuario con`);
+        console.log(customer);
+        loggerAdapter.info(`Customer register`);
         return customer;
     }
 };

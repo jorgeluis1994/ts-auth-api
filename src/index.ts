@@ -13,12 +13,8 @@ const app = express();
 app.use(cors()); // Habilitar CORS
 app.use(bodyParser.json()); // Para parsear el cuerpo de la solicitud a formato JSON
 
-// Ruta de ejemplo
-app.get('/', (req, res) => {
-  res.send('¡Hola, mundo!');
-});
 
-
+//Registro customers
 app.use('/customers', customerRouter);
 
 // Iniciar el servidor
