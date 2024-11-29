@@ -24,6 +24,9 @@ const customerRouter = express.Router();
 
 // Endpoint para registrar un nuevo cliente
 customerRouter.post('/register', async (req: Request, res: Response) => {
+
+    loggerAdapter.error('POST /customer - Method Not Allowed');
+    
     const { id_customer, description, canal_domain_access, info_additional, creation_date, modification_date, id_user_create, id_user_modify, status, hash, connection_params, hash_connection, mnemonic } = req.body;
 
     // Crear el objeto Customer a partir de los datos recibidos
@@ -50,6 +53,8 @@ customerRouter.post('/register', async (req: Request, res: Response) => {
         // Devolver la respuesta con el cliente registrado
         res.status(201).json(registeredCustomer);
     } catch (error) {
+
+        loggerAdapter.error(`Error al registrar el cliente: ${error}`);
         // Manejo de errores
         res.status(500).json({ message: 'Error al registrar el cliente' });
     }
