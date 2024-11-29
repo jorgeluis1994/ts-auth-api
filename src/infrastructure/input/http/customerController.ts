@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import {CustomerRepositoryPort} from '../../../domain/ports/out/customerRepositoryPort'
 import { Customer } from '../../../domain/models/customer';
 import { CustomerService } from '../../../application/customerService';
+import { loggerAdapter } from '../../output/logging/loggerAdapter';
 
 
 
@@ -12,6 +13,7 @@ const customerRepositoryPort: CustomerRepositoryPort = {
     save: async (customer: Customer) => {
         // Simulación de guardar en la base de datos
         console.log("Guardando cliente en la base de datos:", customer);
+        loggerAdapter.info(`Creando un usuario con`);
         return customer;
     }
 };
