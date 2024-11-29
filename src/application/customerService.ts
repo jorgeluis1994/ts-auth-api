@@ -8,6 +8,10 @@ export class CustomerService implements CreateCustomerPort {
     constructor(private customerRepositoryPort: CustomerRepositoryPort) {
 
     }
+    
+    documentRegister(): Promise<Customer> {
+        throw new Error("Method not implemented.");
+    }
 
     //Implemento el contarto de domain entrada de data IN//
     public async executeRegister(customerData: Customer): Promise<Customer> {

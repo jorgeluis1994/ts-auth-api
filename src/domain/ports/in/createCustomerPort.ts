@@ -5,6 +5,8 @@ export interface CreateCustomerPort{
 
    //entrada de customer desde usuario
    executeRegister(customerData:Customer): Promise<Customer>;
+   //document
+   documentRegister():Promise<Customer>;
 
 
 
