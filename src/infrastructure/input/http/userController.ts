@@ -23,6 +23,27 @@ const userRepositoryInstance:UserRepositoryPort ={
 // Crear una instancia de UserService y pasar la instancia de UserRepository
 const userService = new UserService(userRepositoryInstance);
 
+/**
+ * @swagger
+ * /users:
+ *   post:
+ *     summary: Obtiene todos los clientes
+ *     description: Devuelve una lista de todos los usuarios en la base de datos.
+ *     responses:
+ *       200:
+ *         description: Lista de clientes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   name:
+ *                     type: string
+ */
 userRouter.post('/register', async (req: Request, res: Response) => {
 
     loggerAdapter.error('POST /customer - Method Not Allowed');

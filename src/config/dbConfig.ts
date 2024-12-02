@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 export const connectDb = async (): Promise<void> => {
     try {
@@ -10,3 +11,5 @@ export const connectDb = async (): Promise<void> => {
         process.exit(1); // Salir si la conexión falla
     }
 };
+
+

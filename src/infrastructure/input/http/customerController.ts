@@ -1,9 +1,12 @@
 import express, { Request, Response } from 'express';
 
-import {CustomerRepositoryPort} from '../../../domain/ports/out/customerRepositoryPort'
+import { CustomerRepositoryPort} from '../../../domain/ports/out/customerRepositoryPort'
 import { Customer } from '../../../domain/models/customer';
 import { CustomerService } from '../../../application/customerService';
 import { loggerAdapter } from '../../output/logging/loggerAdapter';
+
+import {connectDb} from '../../../config/dbConfig'
+import mongoose from 'mongoose';
 
 
 
@@ -13,6 +16,18 @@ const customerRepositoryPort: CustomerRepositoryPort = {
     save: async (customer: Customer) => {
         // Simulación de guardar en la base de datos
         console.log(customer);
+        // Llama a la función de conexión
+        await connectDb();
+
+        // Realiza la operación de inserción
+        const db = mongoose.connection.db; // Accede a la base de datos directamente
+        const collection = db!.collection('customers');
+
+        // Inserta el nuevo cliente
+        const result = await collection.insertOne(customer);
+        console.log('Cliente insertado con éxito:', result.insertedId);
+
+
         loggerAdapter.info(`Customer register`);
         return customer;
     }
