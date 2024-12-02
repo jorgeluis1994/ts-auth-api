@@ -9,6 +9,8 @@ export interface TravelRepository {
     // Guarda un objeto Travel y devuelve el objeto guardado.
     saveTravel(travel: Travel): Promise<any>;
 
+    updateTravel(travel: Travel): Promise<any>;
+
     // Busca un viaje por la descripción y devuelve un array de objetos Travel que coinciden.
     getByDescTrave(description: string): Promise<Travel[]>;
 

@@ -36,6 +36,27 @@ travelRouter.post('/travel', async (req: Request, resp: Response) => {
 
 })
 
+travelRouter.put('update-travel',async (req:Request,resp:Response)=>{
+   try {
+      const { id_travel, fecha, origen, destino, precioBase } = req.body;
+
+      const travel = new Travel(id_travel, fecha, origen, destino, precioBase);
+
+      const result = await travelService.executeRegister(travel);
+
+      resp.status(201).json(result);
+
+      
+   } catch (error) {
+
+      resp.status(500).json({
+         message: 'Error registering travel',
+         error: error || 'Unknown error',
+      });
+      
+   }
+})
+
 
 
 travelRouter.delete('/delete/:id_travel', async (req: Request, resp: Response) => {
