@@ -5,9 +5,7 @@ import { CustomerRepositoryPort } from "../domain/ports/out/customerRepositoryPo
 export class CustomerService implements CreateCustomerPort {
 
     //Inyecto en repositorio de customer en el constructor
-    constructor(private customerRepositoryPort: CustomerRepositoryPort) {
-
-    }
+    constructor(private customerRepositoryPort: CustomerRepositoryPort) {}
     
     documentRegister(): Promise<Customer> {
         throw new Error("Method not implemented.");

@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import {connectDb} from './config/dbConfig';
 
 import { customerRouter } from './infrastructure/input/http/customerController';
+import { userRouter } from './infrastructure/input/http/userController';
 
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(cors()); // Habilitar CORS
 app.use(bodyParser.json()); // Para parsear el cuerpo de la solicitud a formato JSON
 
 app.use('/customers', customerRouter);
+app.use('/user', customerRouter);
 
 // Iniciar la conexión a la base de datos
 connectDb().then(() => {
