@@ -9,6 +9,7 @@ import {connectDb} from './config/dbConfig';
 
 import { customerRouter } from './infrastructure/input/http/customerController';
 import { userRouter } from './infrastructure/input/http/userController';
+import { travelRouter } from './infrastructure/input/http/travelController';
 
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
@@ -40,8 +41,10 @@ app.use(cors()); // Habilitar CORS
 app.use(bodyParser.json()); // Para parsear el cuerpo de la solicitud a formato JSON
 // Ruta de Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use('/customers', customerRouter);
 app.use('/user', customerRouter);
+app.use('/travel', travelRouter);
 
 // Iniciar la conexión a la base de datos
 connectDb().then(() => {
