@@ -22,6 +22,29 @@ const customerService = new CustomerService(customerRepositoryPort);
 // Crear el enrutador HTTP de Express
 const customerRouter = express.Router();
 
+
+/**
+ * @swagger
+ * /customers:
+ *   get:
+ *     summary: Obtiene todos los clientes
+ *     description: Devuelve una lista de todos los clientes en la base de datos.
+ *     responses:
+ *       200:
+ *         description: Lista de clientes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   name:
+ *                     type: string
+ */
+
 // Endpoint para registrar un nuevo cliente
 customerRouter.post('/register', async (req: Request, res: Response) => {
 

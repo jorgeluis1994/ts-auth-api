@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 import {connectDb} from './config/dbConfig';
 
@@ -11,12 +13,33 @@ import { userRouter } from './infrastructure/input/http/userController';
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
 
+// Configuración de Swagger
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'API Users',
+      version: '1.0.0',
+      description: 'Gestion de usuario con mongo',
+    },
+    servers: [
+      {
+        url: `http://localhost:${process.env.PORT || 4100}`,
+      },
+    ],
+  },
+  apis: ['./src/infrastructure/input/http/*.ts'], // Ruta de los archivos de tus controladores
+};
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+
 const app = express();
 
 // Middleware
 app.use(cors()); // Habilitar CORS
 app.use(bodyParser.json()); // Para parsear el cuerpo de la solicitud a formato JSON
-
+// Ruta de Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/customers', customerRouter);
 app.use('/user', customerRouter);
 
