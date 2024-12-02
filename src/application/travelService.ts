@@ -17,6 +17,13 @@ export class TravelService implements CreateTravel {
         return registerTravel;
     }
 
+    executeDelete(travel: any): Promise<any> {
+
+        const registerTravel = this.travelRepository.deleteTravel(travel);
+
+        return registerTravel;
+    }
+
 
 
 

@@ -36,4 +36,28 @@ travelRouter.post('/travel', async (req: Request, resp: Response) => {
 
 })
 
+
+
+travelRouter.delete('/delete/:id_travel', async (req: Request, resp: Response) => {
+
+   try {
+
+      const { id_travel} = req.params;
+
+      const result = await travelService.executeDelete(id_travel);
+
+      // Devolver la respuesta con el cliente registrado
+      resp.status(201).json(result);
+
+   } catch (error) {
+
+      resp.status(500).json({
+         message: 'Error registering travel',
+         error: error || 'Unknown error',
+      });
+
+   }
+
+})
+
 export { travelRouter };

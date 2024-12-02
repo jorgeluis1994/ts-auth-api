@@ -16,5 +16,5 @@ export interface TravelRepository {
     getByIdTrave(id: string): Promise<Travel | null>;
 
     // Elimina un viaje por su ID y devuelve el ID del viaje eliminado.
-    deleteTravel(id: number): Promise<number>;
+    deleteTravel(id: any): Promise<any>;
 }

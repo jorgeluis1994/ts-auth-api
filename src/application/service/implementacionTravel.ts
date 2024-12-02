@@ -36,8 +36,25 @@ export class implementaRepositorioTravel implements TravelRepository {
     getByIdTrave(id: string): Promise<Travel | null> {
         throw new Error("Method not implemented.");
     }
-    deleteTravel(id: number): Promise<number> {
-        throw new Error("Method not implemented.");
+    async deleteTravel(id: string): Promise<any> {
+        try {
+            await connectDb();
+            
+            // Realiza la operación de inserción
+            const db = mongoose.connection.db; // Accede a la base de datos directamente
+            const collection = db!.collection('travel');
+
+            // Inserta el nuevo cliente
+            const result = await collection.deleteOne({ _id: new mongoose.Types.ObjectId(id) });
+
+            loggerAdapter.info(`travel register`);
+
+            return result;
+
+        } catch (error) {
+            throw new Error("Method not implemented.");
+        }
+
     }
 
 }

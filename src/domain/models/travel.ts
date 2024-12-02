@@ -1,9 +1,9 @@
 export class Travel {
-    id_travel:number
-    fecha:number
-    origen:string
-    destino:string
-    precioBase:number
+    id_travel
+    fecha!:number
+    origen!:string
+    destino!:string
+    precioBase!:number
 
     constructor(id_travel:number,fecha:number,origen:string,destino:string,precioBase:number){
         this.id_travel=id_travel,
@@ -12,6 +12,10 @@ export class Travel {
         this.destino=destino,
         this.precioBase=precioBase
     }
+
+    //  constructor(id_travel:number){
+    //     this.id_travel=id_travel
+    // }
 
     
 }

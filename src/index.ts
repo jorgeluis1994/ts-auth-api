@@ -44,7 +44,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/customers', customerRouter);
 app.use('/user', customerRouter);
-app.use('/travel', travelRouter);
+app.use('/api', travelRouter);
 
 // Iniciar la conexión a la base de datos
 connectDb().then(() => {
