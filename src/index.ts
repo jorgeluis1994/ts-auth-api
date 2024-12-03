@@ -4,12 +4,15 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { Request, Response } from 'express';
 
 import {connectDb} from './config/dbConfig';
 
 import { customerRouter } from './infrastructure/input/http/customerController';
 import { userRouter } from './infrastructure/input/http/userController';
 import { travelRouter } from './infrastructure/input/http/travelController';
+
+import { Routes } from './infrastructure/input/http/routes/route'
 
 // Cargar las variables de entorno desde el archivo .env
 dotenv.config();
@@ -42,14 +45,22 @@ app.use(bodyParser.json()); // Para parsear el cuerpo de la solicitud a formato 
 // Ruta de Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use('/customers', customerRouter);
-app.use('/user', customerRouter);
-app.use('/api', travelRouter);
+// app.use('/customers', customerRouter);
+// app.use('/user', customerRouter);
+// app.use('/api', travelRouter);
+
+app.use((Request, Response, next) => {
+  console.log('Middleware ejecutado');
+  next(); // Pasamos la solicitud al siguiente middleware o ruta
+});
+
+ app.use('/api', travelRouter);
+
 
 // Iniciar la conexión a la base de datos
 connectDb().then(() => {
   // Iniciar el servidor solo después de que la base de datos esté conectada
-  const port = process.env.PORT || 4100;
+  const port = process.env.PORT || 4500;
   app.listen(port, () => {
     console.log(`Servidor escuchando en el puerto ${port}`);
   });

@@ -11,6 +11,8 @@ export interface TravelRepository {
 
     updateTravel(travel: Travel): Promise<any>;
 
+    updateIdTravel( id : string,travel: Travel): Promise<any>;
+
     // Busca un viaje por la descripción y devuelve un array de objetos Travel que coinciden.
     getByDescTrave(description: string): Promise<Travel[]>;
 

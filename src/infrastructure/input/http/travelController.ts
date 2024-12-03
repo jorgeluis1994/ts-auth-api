@@ -12,7 +12,7 @@ const travelRepository = new implementaRepositorioTravel();
 const travelService = new TravelService(travelRepository);
 
 //Controldores
-travelRouter.post('/travel', async (req: Request, resp: Response) => {
+travelRouter.post('/save-travel', async (req: Request, resp: Response) => {
 
    try {
 
@@ -36,13 +36,13 @@ travelRouter.post('/travel', async (req: Request, resp: Response) => {
 
 })
 
-travelRouter.put('update-travel',async (req:Request,resp:Response)=>{
+travelRouter.put('/update-travel',async (req:Request,resp:Response)=>{
    try {
       const { id_travel, fecha, origen, destino, precioBase } = req.body;
 
       const travel = new Travel(id_travel, fecha, origen, destino, precioBase);
 
-      const result = await travelService.executeRegister(travel);
+      const result = await travelService.executeUpdate(req.body._id, travel);
 
       resp.status(201).json(result);
 
@@ -57,10 +57,7 @@ travelRouter.put('update-travel',async (req:Request,resp:Response)=>{
    }
 })
 
-
-
 travelRouter.delete('/delete/:id_travel', async (req: Request, resp: Response) => {
-
    try {
 
       const { id_travel} = req.params;

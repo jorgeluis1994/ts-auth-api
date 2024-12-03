@@ -24,9 +24,9 @@ export class TravelService implements CreateTravel {
         return registerTravel;
     }
 
-    executeUpdate(travel: any): Promise<any> {
+    executeUpdate(id :string,travel: any): Promise<any> {
 
-        const registerTravel = this.travelRepository.updateTravel(travel);
+        const registerTravel = this.travelRepository.updateIdTravel(id, travel);
 
         return registerTravel;
     }
